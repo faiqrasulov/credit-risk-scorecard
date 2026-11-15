@@ -12,8 +12,9 @@ codes, a fairness audit and a FastAPI service.
 
 German Credit (1,000 applicants, 30% bad), 5 x 5 repeated stratified cross-validation. Every
 number comes from `make run` (about 1.5 minutes on a laptop CPU) and is stored in
-[`reports/metrics.json`](reports/metrics.json). The committed file was produced with older
-package versions; on current scikit-learn the gradient-boosting numbers change slightly.
+[`reports/metrics.json`](reports/metrics.json). The committed file was produced with the package
+versions pinned in [`requirements.lock`](requirements.lock); on current scikit-learn the
+gradient-boosting numbers change slightly.
 
 - **The interpretable scorecard matches gradient boosting.** ROC-AUC 0.780 ± 0.029 for the WoE
   scorecard (11 features, 46 bins, additive points) vs 0.783 ± 0.032 for tuned
@@ -114,7 +115,8 @@ Mean ± SD over 25 folds:
 - The 25 folds share data, so the SDs describe fold-to-fold variability, not the standard error
   of a difference.
 - The boosting grid is interior: `max_iter = 100` won in 21 of 25 folds (50 in 3, 200 in 1).
-  The logistic model chose C = 0.1 in all 25.
+  The logistic model chose C = 0.1 in all 25. The boosting grid was widened once, after a first
+  run selected its edge (see the commit history); the scorecard's own settings were not tuned.
 
 ### Calibration
 
@@ -227,7 +229,8 @@ final model keeps 11.
 ![Fairness audit](reports/figures/fairness.png)
 
 Served scorecard, out-of-fold decisions at the deployed cutoff (averaged over the 5 repeats),
-95% bootstrap intervals. DI = approval rate of the unprivileged group / privileged group;
+95% bootstrap intervals that resample applicants with the model held fixed, so they do not include
+model-fitting uncertainty. DI = approval rate of the unprivileged group / privileged group;
 EOD = difference in approval rate among applicants who repaid (TPR).
 
 | Comparison | n | Bad rate | Approval rate | TPR | DI [95% CI] | EOD [95% CI] |
@@ -280,6 +283,11 @@ make run       # downloads German Credit (OpenML, cached in data/), runs every a
                # writes reports/ and models/scorecard.joblib (~1.5 min, < 200 MB RAM)
 make test      # 56 tests, ~10 s, no network
 ```
+
+`make install` takes the newest compatible packages. To reproduce the committed `reports/`, use
+`make install-locked` instead: it installs the versions pinned in
+[`requirements.lock`](requirements.lock) (Python 3.12), with which `make run` regenerates every
+value in `reports/metrics.json` exactly (checked on macOS arm64).
 
 ## Serving
 

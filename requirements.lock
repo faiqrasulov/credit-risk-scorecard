@@ -1,0 +1,43 @@
+# Exact package versions that produced reports/metrics.json and the figures in this repository
+# (Python 3.12). Install them with: make install-locked
+# Resolved with: uv pip compile pyproject.toml --all-extras --universal, held at those versions.
+annotated-doc==0.0.4
+annotated-types==0.6.0
+anyio==4.16.0
+certifi==2026.2.25
+click==8.5.1
+colorama==0.4.6 ; sys_platform == 'win32'
+contourpy==1.2.0
+cycler==0.11.0
+fastapi==0.135.1
+fonttools==4.51.0
+h11==0.16.0
+httpcore==1.0.9
+httpx==0.28.1
+idna==3.20
+iniconfig==1.1.1
+joblib==1.4.2
+kiwisolver==1.4.4
+matplotlib==3.8.4
+numpy==1.26.4
+packaging==26.3
+pandas==2.2.2
+pillow==12.2.0
+pluggy==1.6.0
+pydantic==2.12.5
+pydantic-core==2.41.5
+pygments==2.15.1
+pyparsing==3.0.9
+pytest==9.0.2
+python-dateutil==2.9.0.post0
+pytz==2024.1
+ruff==0.17.5
+scikit-learn==1.4.2
+scipy==1.13.1
+six==1.16.0
+starlette==1.0.0
+threadpoolctl==3.8.0
+typing-extensions==4.16.0
+typing-inspection==0.4.2
+tzdata==2026.2
+uvicorn==0.42.0
