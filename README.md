@@ -12,7 +12,8 @@ codes, a fairness audit and a FastAPI service.
 
 German Credit (1,000 applicants, 30% bad), 5 x 5 repeated stratified cross-validation. Every
 number comes from `make run` (about 1.5 minutes on a laptop CPU) and is stored in
-[`reports/metrics.json`](reports/metrics.json).
+[`reports/metrics.json`](reports/metrics.json). The committed file was produced with older
+package versions; on current scikit-learn the gradient-boosting numbers change slightly.
 
 - **The interpretable scorecard matches gradient boosting.** ROC-AUC 0.780 ± 0.029 for the WoE
   scorecard (11 features, 46 bins, additive points) vs 0.783 ± 0.032 for tuned
@@ -23,8 +24,10 @@ number comes from `make run` (about 1.5 minutes on a laptop CPU) and is stored i
   than rejecting everyone (0.70). The cost-optimal cutoff (reject at PD >= 0.149, i.e. score
   <= 537) costs **0.536 ± 0.010** when the cutoff itself is chosen out of sample, and approves
   36% of applicants. The theoretical Bayes cutoff of 1/6 gives the same cost (0.534).
-- **The scorecard has the lowest expected cost:** 0.536 vs 0.562-0.570 for the boosting variants
-  and 0.567 for logistic regression. It beats tuned boosting in all 5 CV repeats.
+- **The scorecard is at least as cheap as the alternatives:** 0.536 vs 0.562-0.570 for the
+  boosting variants and 0.567 for logistic regression. The gaps are small, the repeats reuse the
+  same 1,000 applicants, and the per-repeat ordering is not stable, so this is a tie on cost,
+  not a win. The scorecard's advantage is that it is interpretable at no cost in accuracy.
 - **Dropping age from the model does not remove the age gap.** Applicants under 25 are approved
   at **0.56x** the rate of older applicants (95% CI 0.40-0.73), below the four-fifths screening
   line. Among applicants who repaid, 32% of the young are approved vs 50% of the rest.
@@ -158,9 +161,9 @@ out-of-fold predictions. Rejecting everyone costs 0.70; approving everyone costs
   (0.534). On reasonably calibrated PDs, theory is as good as tuning.
 - The served model uses the cutoff that minimises cost over all 5,000 pooled out-of-fold PDs:
   **PD >= 0.1495, i.e. score <= 537.3**.
-- **The scorecard is cheapest to operate:** its cross-validated cost is below tuned boosting in
-  all 5 repeats, and below or tied with logistic regression and each calibrated boosting variant
-  in at least 4 of 5. Its approval curve
+- **The scorecard is no more expensive to operate:** its mean cross-validated cost is below tuned
+  boosting, logistic regression and each calibrated boosting variant, but not in every repeat,
+  and the differences are within noise for 1,000 applicants. Its approval curve
   sits above the others at low cutoffs (figure, bottom panel): it is better at isolating a large
   low-risk group. That is the region a 5:1 cost matrix cares about, and global metrics like
   PR-AUC do not measure it.
