@@ -3,6 +3,7 @@ import json
 import numpy as np
 import pandas as pd
 import pytest
+from threadpoolctl import threadpool_limits
 
 from credit_risk.cli import main
 from credit_risk.data import MODEL_FEATURES, clean_frame, make_synthetic_credit
@@ -14,10 +15,12 @@ TINY_HGB = {"hgb__max_iter": [30], "hgb__max_leaf_nodes": [7], "hgb__min_samples
 
 def test_end_to_end_on_synthetic_data(tmp_path):
     X, y = make_synthetic_credit(n=500, seed=3)
-    m = run_experiment(X, y, reports_dir=tmp_path / "reports",
-                       model_path=tmp_path / "models" / "m.joblib", n_splits=3, n_repeats=2,
-                       seed=0, hgb_grid=TINY_HGB, logreg_grid={"logreg__C": [1.0]}, n_boot=50,
-                       check_codebook=False, log=lambda s: None)
+    with threadpool_limits(limits=1):  # as in the CLI: tiny fits, threads only add contention
+        m = run_experiment(X, y, reports_dir=tmp_path / "reports",
+                           model_path=tmp_path / "models" / "m.joblib", n_splits=3,
+                           n_repeats=2, seed=0, hgb_grid=TINY_HGB,
+                           logreg_grid={"logreg__C": [1.0]}, n_boot=50, check_codebook=False,
+                           log=lambda s: None)
     reports = tmp_path / "reports"
     for f in ("metrics.json", "scorecard.csv", "scorecard.md", "iv_table.csv", "iv_table.md"):
         assert (reports / f).exists(), f

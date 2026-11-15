@@ -1,0 +1,21 @@
+feature,iv,n_bins,strength,excluded_by_policy,cv_selection_rate
+checking_status,0.6591,4,very strong,False,1.0
+credit_history,0.2892,4,medium,False,1.0
+duration,0.2709,5,medium,False,1.0
+savings_status,0.1868,4,medium,False,1.0
+purpose,0.1649,6,medium,False,1.0
+credit_amount,0.1356,5,medium,False,1.0
+property_magnitude,0.1118,4,medium,False,1.0
+age,0.0999,4,weak,True,0.0
+employment,0.0857,5,weak,False,1.0
+housing,0.0838,3,weak,False,1.0
+other_payment_plans,0.0579,2,weak,False,1.0
+personal_status,0.0448,4,weak,True,0.0
+installment_commitment,0.0255,4,weak,False,0.76
+other_parties,0.0149,2,unpredictive,False,0.24
+existing_credits,0.0099,2,unpredictive,False,0.08
+job,0.0086,3,unpredictive,False,0.08
+own_telephone,0.0063,2,unpredictive,False,0.12
+residence_since,0.0016,2,unpredictive,False,0.0
+num_dependents,0.0,2,unpredictive,False,0.0
+foreign_worker,0.0,1,unpredictive,True,0.0

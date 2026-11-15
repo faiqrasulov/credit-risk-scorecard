@@ -55,9 +55,10 @@ def create_app(artifact: dict[str, Any] | None = None,
         if a is None:
             return JSONResponse(status_code=503, content={
                 "status": "model not loaded: run `credit-risk train`"})
-        return Health(status="ok", model="woe_scorecard", n_features=len(state["scorecard"]
-                                                                         .features),
-                      threshold_pd=a["threshold_pd"], cutoff_score=a["cutoff_score"],
+        return Health(status="ok", model="woe_scorecard",
+                      n_features=len(state["scorecard"].features),
+                      threshold_pd=round(a["threshold_pd"], 6),
+                      cutoff_score=round(a["cutoff_score"], 2),
                       model_version=a["versions"]["credit_risk"])
 
     @app.post("/score", response_model=ScoreResponse)

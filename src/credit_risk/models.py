@@ -16,7 +16,7 @@ from credit_risk.schema import CATEGORICAL_LEVELS
 
 LOGREG_GRID: dict[str, list] = {"logreg__C": [0.01, 0.1, 1.0, 10.0]}
 HGB_GRID: dict[str, list] = {
-    "hgb__max_iter": [100, 300],
+    "hgb__max_iter": [50, 100, 200],
     "hgb__max_leaf_nodes": [7, 15],
     "hgb__min_samples_leaf": [20, 40],
 }

@@ -128,8 +128,8 @@ def cost_vs_threshold(y: np.ndarray, cv: CVResult, metrics: dict[str, Any], path
         ax2.plot(grid, appr.mean(axis=0), color=STYLE[m]["color"], ls=STYLE[m]["ls"])
     sc = metrics["cost"]["models"]["woe_scorecard"]
     t_opt = sc["pooled_optimal_threshold"]
-    for level, name, x, ha in ((base["reject_all"], "reject everyone", 0.99, "right"),
-                               (base["approve_all"], "approve everyone", 0.01, "left")):
+    for level, name, x, ha in ((base["reject_all"], "reject all", 0.99, "right"),
+                               (base["approve_all"], "approve all", 0.01, "left")):
         ax.axhline(level, color=INK_2, lw=1, ls=":")
         ax.text(x, level - 0.045, f"{name}: {level:.2f}", ha=ha, fontsize=8.5, color=INK_2)
     for t, name in ((bayes_threshold(), "Bayes 1/6"), (0.5, "0.5")):
@@ -138,7 +138,7 @@ def cost_vs_threshold(y: np.ndarray, cv: CVResult, metrics: dict[str, Any], path
         ax.text(t + 0.01, 1.55, name, fontsize=8.5, color=INK_2)
     c_opt = sc["pooled_optimal_cost"]
     ax.plot([t_opt], [c_opt], "o", ms=9, color=BLUE, mec=SURFACE, mew=2)
-    ax.annotate(f"scorecard optimum: PD cutoff {t_opt:.3f}, cost {c_opt:.3f}",
+    ax.annotate(f"scorecard optimum: PD cutoff {t_opt:.3f} (in-sample cost {c_opt:.3f})",
                 (t_opt, c_opt), xytext=(0.25, 0.44), textcoords="data", fontsize=8.5,
                 arrowprops=dict(arrowstyle="-", color=INK_2, lw=1))
     ax.set(ylabel="Expected cost per applicant", ylim=(0.4, 1.6),

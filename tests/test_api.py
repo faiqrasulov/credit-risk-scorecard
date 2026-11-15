@@ -23,7 +23,7 @@ def test_health(client, artifact):
     assert r.status_code == 200
     body = r.json()
     assert body["status"] == "ok" and body["model"] == "woe_scorecard"
-    assert body["threshold_pd"] == pytest.approx(artifact["threshold_pd"])
+    assert body["threshold_pd"] == pytest.approx(artifact["threshold_pd"], abs=1e-6)
 
 
 def test_score_returns_consistent_decision_and_reasons(client, artifact):

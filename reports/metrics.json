@@ -1,0 +1,1371 @@
+{
+  "data": {
+    "source": "OpenML data_id=31 (credit-g = Statlog German Credit, Hofmann 1994)",
+    "n_applicants": 1000,
+    "bad_rate": 0.3,
+    "n_raw_features": 20,
+    "model_features": [
+      "checking_status",
+      "duration",
+      "credit_history",
+      "purpose",
+      "credit_amount",
+      "savings_status",
+      "employment",
+      "installment_commitment",
+      "other_parties",
+      "residence_since",
+      "property_magnitude",
+      "other_payment_plans",
+      "housing",
+      "existing_credits",
+      "job",
+      "num_dependents",
+      "own_telephone"
+    ],
+    "excluded_features": [
+      "age",
+      "personal_status",
+      "foreign_worker"
+    ],
+    "codebook_check_max_gap_pp": {
+      "checking_status": 0.0043,
+      "credit_history": 0.0043,
+      "purpose": 0.0043,
+      "savings_status": 0.0033,
+      "employment": 0.0043,
+      "installment_commitment": 0.0043,
+      "personal_status": 0.0043,
+      "other_parties": 0.0043,
+      "residence_since": 0.0043,
+      "property_magnitude": 0.0043,
+      "other_payment_plans": 0.0043,
+      "housing": 0.1443,
+      "existing_credits": 0.0033,
+      "job": 0.0033,
+      "num_dependents": 0.0033,
+      "own_telephone": 0.0033,
+      "foreign_worker": 0.0043
+    }
+  },
+  "setup": {
+    "cv": "RepeatedStratifiedKFold(n_splits=5, n_repeats=5, random_state=42)",
+    "cost_matrix": {
+      "approve_bad": 5.0,
+      "reject_good": 1.0
+    },
+    "scorecard_scaling": {
+      "base_score": 600.0,
+      "base_odds": 50.0,
+      "pdo": 20.0
+    },
+    "hgb_grid": {
+      "hgb__max_iter": [
+        50,
+        100,
+        200
+      ],
+      "hgb__max_leaf_nodes": [
+        7,
+        15
+      ],
+      "hgb__min_samples_leaf": [
+        20,
+        40
+      ]
+    },
+    "logreg_grid": {
+      "logreg__C": [
+        0.01,
+        0.1,
+        1.0,
+        10.0
+      ]
+    }
+  },
+  "cv_metrics": {
+    "woe_scorecard": {
+      "roc_auc": {
+        "mean": 0.779705,
+        "std": 0.029191
+      },
+      "gini": {
+        "mean": 0.55941,
+        "std": 0.058381
+      },
+      "pr_auc": {
+        "mean": 0.586881,
+        "std": 0.045455
+      },
+      "ks": {
+        "mean": 0.476286,
+        "std": 0.053596
+      },
+      "brier": {
+        "mean": 0.169743,
+        "std": 0.011091
+      },
+      "log_loss": {
+        "mean": 0.509395,
+        "std": 0.029968
+      },
+      "ece": {
+        "mean": 0.074566,
+        "std": 0.016967
+      }
+    },
+    "logreg_onehot": {
+      "roc_auc": {
+        "mean": 0.780886,
+        "std": 0.034064
+      },
+      "gini": {
+        "mean": 0.561771,
+        "std": 0.068129
+      },
+      "pr_auc": {
+        "mean": 0.61149,
+        "std": 0.0509
+      },
+      "ks": {
+        "mean": 0.475905,
+        "std": 0.066323
+      },
+      "brier": {
+        "mean": 0.166223,
+        "std": 0.010824
+      },
+      "log_loss": {
+        "mean": 0.501229,
+        "std": 0.027258
+      },
+      "ece": {
+        "mean": 0.071158,
+        "std": 0.012468
+      }
+    },
+    "hgb": {
+      "roc_auc": {
+        "mean": 0.7831,
+        "std": 0.032421
+      },
+      "gini": {
+        "mean": 0.5662,
+        "std": 0.064842
+      },
+      "pr_auc": {
+        "mean": 0.624575,
+        "std": 0.06064
+      },
+      "ks": {
+        "mean": 0.479048,
+        "std": 0.055957
+      },
+      "brier": {
+        "mean": 0.165581,
+        "std": 0.01208
+      },
+      "log_loss": {
+        "mean": 0.503333,
+        "std": 0.032322
+      },
+      "ece": {
+        "mean": 0.072248,
+        "std": 0.018561
+      }
+    },
+    "hgb_sigmoid": {
+      "roc_auc": {
+        "mean": 0.785233,
+        "std": 0.032958
+      },
+      "gini": {
+        "mean": 0.570467,
+        "std": 0.065916
+      },
+      "pr_auc": {
+        "mean": 0.630678,
+        "std": 0.059284
+      },
+      "ks": {
+        "mean": 0.48,
+        "std": 0.055847
+      },
+      "brier": {
+        "mean": 0.164883,
+        "std": 0.01066
+      },
+      "log_loss": {
+        "mean": 0.500002,
+        "std": 0.025519
+      },
+      "ece": {
+        "mean": 0.074172,
+        "std": 0.013226
+      }
+    },
+    "hgb_isotonic": {
+      "roc_auc": {
+        "mean": 0.782886,
+        "std": 0.033448
+      },
+      "gini": {
+        "mean": 0.565771,
+        "std": 0.066897
+      },
+      "pr_auc": {
+        "mean": 0.626886,
+        "std": 0.060476
+      },
+      "ks": {
+        "mean": 0.475333,
+        "std": 0.061175
+      },
+      "brier": {
+        "mean": 0.166384,
+        "std": 0.012981
+      },
+      "log_loss": {
+        "mean": 0.522424,
+        "std": 0.070379
+      },
+      "ece": {
+        "mean": 0.074581,
+        "std": 0.016538
+      }
+    },
+    "woe_scorecard_with_protected": {
+      "roc_auc": {
+        "mean": 0.783867,
+        "std": 0.027117
+      },
+      "gini": {
+        "mean": 0.567733,
+        "std": 0.054234
+      },
+      "pr_auc": {
+        "mean": 0.592939,
+        "std": 0.042608
+      },
+      "ks": {
+        "mean": 0.485143,
+        "std": 0.050872
+      },
+      "brier": {
+        "mean": 0.168396,
+        "std": 0.010272
+      },
+      "log_loss": {
+        "mean": 0.505647,
+        "std": 0.028174
+      },
+      "ece": {
+        "mean": 0.072911,
+        "std": 0.016851
+      }
+    }
+  },
+  "calibration_pooled_oof": {
+    "woe_scorecard": {
+      "brier": 0.169743,
+      "ece": 0.02894,
+      "log_loss": 0.509395,
+      "calibration_slope": 0.827879,
+      "calibration_intercept": -0.100428,
+      "mean_pd": 0.297834,
+      "observed_bad_rate": 0.3
+    },
+    "logreg_onehot": {
+      "brier": 0.166223,
+      "ece": 0.019425,
+      "log_loss": 0.501229,
+      "calibration_slope": 1.048177,
+      "calibration_intercept": 0.032084,
+      "mean_pd": 0.300055,
+      "observed_bad_rate": 0.3
+    },
+    "hgb": {
+      "brier": 0.165581,
+      "ece": 0.018029,
+      "log_loss": 0.503333,
+      "calibration_slope": 0.945476,
+      "calibration_intercept": -0.013477,
+      "mean_pd": 0.296087,
+      "observed_bad_rate": 0.3
+    },
+    "hgb_sigmoid": {
+      "brier": 0.164883,
+      "ece": 0.017745,
+      "log_loss": 0.500002,
+      "calibration_slope": 1.108521,
+      "calibration_intercept": 0.073525,
+      "mean_pd": 0.300003,
+      "observed_bad_rate": 0.3
+    },
+    "hgb_isotonic": {
+      "brier": 0.166384,
+      "ece": 0.02069,
+      "log_loss": 0.522424,
+      "calibration_slope": 0.833316,
+      "calibration_intercept": -0.115602,
+      "mean_pd": 0.301152,
+      "observed_bad_rate": 0.3
+    },
+    "woe_scorecard_with_protected": {
+      "brier": 0.168396,
+      "ece": 0.031032,
+      "log_loss": 0.505647,
+      "calibration_slope": 0.823964,
+      "calibration_intercept": -0.100394,
+      "mean_pd": 0.297834,
+      "observed_bad_rate": 0.3
+    }
+  },
+  "cost": {
+    "baselines": {
+      "approve_all": 1.5,
+      "reject_all": 0.7
+    },
+    "models": {
+      "woe_scorecard": {
+        "threshold_0.5": {
+          "cost": {
+            "mean": 0.9366,
+            "std": 0.017184
+          },
+          "approval_rate": {
+            "mean": 0.7846,
+            "std": 0.004037
+          }
+        },
+        "bayes_threshold_1/6": {
+          "threshold": 0.166667,
+          "cost": {
+            "mean": 0.5342,
+            "std": 0.012677
+          },
+          "approval_rate": {
+            "mean": 0.3974,
+            "std": 0.006656
+          }
+        },
+        "optimal_in_sample": {
+          "threshold": {
+            "mean": 0.139651,
+            "std": 0.011852
+          },
+          "cost": {
+            "mean": 0.5098,
+            "std": 0.005762
+          },
+          "approval_rate": {
+            "mean": 0.3414,
+            "std": 0.02179
+          }
+        },
+        "optimal_threshold_cross_validated": {
+          "cost": {
+            "mean": 0.5356,
+            "std": 0.010139
+          },
+          "cost_per_repeat": [
+            0.537,
+            0.531,
+            0.533,
+            0.552,
+            0.525
+          ]
+        },
+        "pooled_optimal_threshold": 0.149462,
+        "pooled_optimal_cost": 0.518,
+        "pooled_optimal_approval_rate": 0.3632
+      },
+      "logreg_onehot": {
+        "threshold_0.5": {
+          "cost": {
+            "mean": 0.9532,
+            "std": 0.027914
+          },
+          "approval_rate": {
+            "mean": 0.8076,
+            "std": 0.006465
+          }
+        },
+        "bayes_threshold_1/6": {
+          "threshold": 0.166667,
+          "cost": {
+            "mean": 0.5494,
+            "std": 0.013612
+          },
+          "approval_rate": {
+            "mean": 0.3366,
+            "std": 0.006656
+          }
+        },
+        "optimal_in_sample": {
+          "threshold": {
+            "mean": 0.18578,
+            "std": 0.026471
+          },
+          "cost": {
+            "mean": 0.5324,
+            "std": 0.012198
+          },
+          "approval_rate": {
+            "mean": 0.3752,
+            "std": 0.050628
+          }
+        },
+        "optimal_threshold_cross_validated": {
+          "cost": {
+            "mean": 0.5666,
+            "std": 0.02055
+          },
+          "cost_per_repeat": [
+            0.537,
+            0.581,
+            0.586,
+            0.575,
+            0.554
+          ]
+        },
+        "pooled_optimal_threshold": 0.211827,
+        "pooled_optimal_cost": 0.5434,
+        "pooled_optimal_approval_rate": 0.4242
+      },
+      "hgb": {
+        "threshold_0.5": {
+          "cost": {
+            "mean": 0.9136,
+            "std": 0.037733
+          },
+          "approval_rate": {
+            "mean": 0.7944,
+            "std": 0.010334
+          }
+        },
+        "bayes_threshold_1/6": {
+          "threshold": 0.166667,
+          "cost": {
+            "mean": 0.5572,
+            "std": 0.016829
+          },
+          "approval_rate": {
+            "mean": 0.3828,
+            "std": 0.008556
+          }
+        },
+        "optimal_in_sample": {
+          "threshold": {
+            "mean": 0.148989,
+            "std": 0.016431
+          },
+          "cost": {
+            "mean": 0.5426,
+            "std": 0.012837
+          },
+          "approval_rate": {
+            "mean": 0.3434,
+            "std": 0.039608
+          }
+        },
+        "optimal_threshold_cross_validated": {
+          "cost": {
+            "mean": 0.5696,
+            "std": 0.018243
+          },
+          "cost_per_repeat": [
+            0.555,
+            0.562,
+            0.593,
+            0.585,
+            0.553
+          ]
+        },
+        "pooled_optimal_threshold": 0.131039,
+        "pooled_optimal_cost": 0.5504,
+        "pooled_optimal_approval_rate": 0.3008
+      },
+      "hgb_sigmoid": {
+        "threshold_0.5": {
+          "cost": {
+            "mean": 0.9648,
+            "std": 0.021335
+          },
+          "approval_rate": {
+            "mean": 0.8104,
+            "std": 0.003435
+          }
+        },
+        "bayes_threshold_1/6": {
+          "threshold": 0.166667,
+          "cost": {
+            "mean": 0.5542,
+            "std": 0.017527
+          },
+          "approval_rate": {
+            "mean": 0.3402,
+            "std": 0.01045
+          }
+        },
+        "optimal_in_sample": {
+          "threshold": {
+            "mean": 0.174827,
+            "std": 0.016627
+          },
+          "cost": {
+            "mean": 0.5384,
+            "std": 0.011992
+          },
+          "approval_rate": {
+            "mean": 0.3596,
+            "std": 0.038063
+          }
+        },
+        "optimal_threshold_cross_validated": {
+          "cost": {
+            "mean": 0.5616,
+            "std": 0.021443
+          },
+          "cost_per_repeat": [
+            0.577,
+            0.533,
+            0.577,
+            0.544,
+            0.577
+          ]
+        },
+        "pooled_optimal_threshold": 0.180952,
+        "pooled_optimal_cost": 0.5476,
+        "pooled_optimal_approval_rate": 0.3696
+      },
+      "hgb_isotonic": {
+        "threshold_0.5": {
+          "cost": {
+            "mean": 0.9212,
+            "std": 0.018158
+          },
+          "approval_rate": {
+            "mean": 0.7904,
+            "std": 0.007765
+          }
+        },
+        "bayes_threshold_1/6": {
+          "threshold": 0.166667,
+          "cost": {
+            "mean": 0.5574,
+            "std": 0.023723
+          },
+          "approval_rate": {
+            "mean": 0.3526,
+            "std": 0.011824
+          }
+        },
+        "optimal_in_sample": {
+          "threshold": {
+            "mean": 0.159982,
+            "std": 0.057362
+          },
+          "cost": {
+            "mean": 0.5412,
+            "std": 0.017456
+          },
+          "approval_rate": {
+            "mean": 0.3352,
+            "std": 0.112057
+          }
+        },
+        "optimal_threshold_cross_validated": {
+          "cost": {
+            "mean": 0.566,
+            "std": 0.031875
+          },
+          "cost_per_repeat": [
+            0.563,
+            0.553,
+            0.596,
+            0.521,
+            0.597
+          ]
+        },
+        "pooled_optimal_threshold": 0.168075,
+        "pooled_optimal_cost": 0.5542,
+        "pooled_optimal_approval_rate": 0.357
+      },
+      "woe_scorecard_with_protected": {
+        "threshold_0.5": {
+          "cost": {
+            "mean": 0.9422,
+            "std": 0.026109
+          },
+          "approval_rate": {
+            "mean": 0.7862,
+            "std": 0.005805
+          }
+        },
+        "bayes_threshold_1/6": {
+          "threshold": 0.166667,
+          "cost": {
+            "mean": 0.5306,
+            "std": 0.014258
+          },
+          "approval_rate": {
+            "mean": 0.4058,
+            "std": 0.004764
+          }
+        },
+        "optimal_in_sample": {
+          "threshold": {
+            "mean": 0.146901,
+            "std": 0.011862
+          },
+          "cost": {
+            "mean": 0.5112,
+            "std": 0.013161
+          },
+          "approval_rate": {
+            "mean": 0.3688,
+            "std": 0.028657
+          }
+        },
+        "optimal_threshold_cross_validated": {
+          "cost": {
+            "mean": 0.5358,
+            "std": 0.017065
+          },
+          "cost_per_repeat": [
+            0.566,
+            0.532,
+            0.528,
+            0.528,
+            0.525
+          ]
+        },
+        "pooled_optimal_threshold": 0.158041,
+        "pooled_optimal_cost": 0.5192,
+        "pooled_optimal_approval_rate": 0.3896
+      }
+    }
+  },
+  "fairness": {
+    "threshold_pd": 0.149462,
+    "models": {
+      "woe_scorecard": {
+        "age": {
+          "unprivileged": "<25",
+          "privileged": ">=25",
+          "groups": {
+            "<25": {
+              "n": 149.0,
+              "bad_rate": 0.409396,
+              "approval_rate": 0.21745,
+              "tpr": 0.322727,
+              "fpr": 0.065574
+            },
+            ">=25": {
+              "n": 851.0,
+              "bad_rate": 0.280846,
+              "approval_rate": 0.388719,
+              "tpr": 0.497712,
+              "fpr": 0.109623
+            }
+          },
+          "groups_ci95": {
+            "<25": {
+              "approval_rate": [
+                0.156755,
+                0.279227
+              ],
+              "tpr": [
+                0.230584,
+                0.41291
+              ],
+              "fpr": [
+                0.016667,
+                0.121129
+              ]
+            },
+            ">=25": {
+              "approval_rate": [
+                0.358126,
+                0.418588
+              ],
+              "tpr": [
+                0.460632,
+                0.53322
+              ],
+              "fpr": [
+                0.074997,
+                0.147789
+              ]
+            }
+          },
+          "disparate_impact": 0.5594,
+          "disparate_impact_ci95": [
+            0.398327,
+            0.726802
+          ],
+          "equal_opportunity_difference": -0.174985,
+          "equal_opportunity_difference_ci95": [
+            -0.273514,
+            -0.077242
+          ]
+        },
+        "sex_statlog_codes": {
+          "unprivileged": "female",
+          "privileged": "male",
+          "groups": {
+            "female": {
+              "n": 310.0,
+              "bad_rate": 0.351613,
+              "approval_rate": 0.354194,
+              "tpr": 0.492537,
+              "fpr": 0.099083
+            },
+            "male": {
+              "n": 690.0,
+              "bad_rate": 0.276812,
+              "approval_rate": 0.367246,
+              "tpr": 0.468938,
+              "fpr": 0.101571
+            }
+          },
+          "groups_ci95": {
+            "female": {
+              "approval_rate": [
+                0.307177,
+                0.404304
+              ],
+              "tpr": [
+                0.432151,
+                0.554094
+              ],
+              "fpr": [
+                0.051923,
+                0.155738
+              ]
+            },
+            "male": {
+              "approval_rate": [
+                0.333901,
+                0.401135
+              ],
+              "tpr": [
+                0.42647,
+                0.508683
+              ],
+              "fpr": [
+                0.063107,
+                0.141542
+              ]
+            }
+          },
+          "disparate_impact": 0.964458,
+          "disparate_impact_ci95": [
+            0.811579,
+            1.137013
+          ],
+          "equal_opportunity_difference": 0.023599,
+          "equal_opportunity_difference_ci95": [
+            -0.048426,
+            0.097697
+          ]
+        },
+        "sex_corrected_codes": {
+          "unprivileged": "female",
+          "privileged": "male",
+          "groups": {
+            "female": {
+              "n": 92.0,
+              "bad_rate": 0.271739,
+              "approval_rate": 0.352174,
+              "tpr": 0.447761,
+              "fpr": 0.096
+            },
+            "male": {
+              "n": 598.0,
+              "bad_rate": 0.277592,
+              "approval_rate": 0.369565,
+              "tpr": 0.472222,
+              "fpr": 0.10241
+            },
+            "mixed": {
+              "n": 310.0,
+              "bad_rate": 0.351613,
+              "approval_rate": 0.354194,
+              "tpr": 0.492537,
+              "fpr": 0.099083
+            }
+          },
+          "groups_ci95": {
+            "female": {
+              "approval_rate": [
+                0.260464,
+                0.438009
+              ],
+              "tpr": [
+                0.339723,
+                0.55
+              ],
+              "fpr": [
+                0.007143,
+                0.221062
+              ]
+            },
+            "male": {
+              "approval_rate": [
+                0.334434,
+                0.406482
+              ],
+              "tpr": [
+                0.428243,
+                0.517125
+              ],
+              "fpr": [
+                0.062982,
+                0.146344
+              ]
+            },
+            "mixed": {
+              "approval_rate": [
+                0.307177,
+                0.404304
+              ],
+              "tpr": [
+                0.432151,
+                0.554094
+              ],
+              "fpr": [
+                0.051923,
+                0.155738
+              ]
+            }
+          },
+          "disparate_impact": 0.952941,
+          "disparate_impact_ci95": [
+            0.694672,
+            1.217932
+          ],
+          "equal_opportunity_difference": -0.024461,
+          "equal_opportunity_difference_ci95": [
+            -0.139019,
+            0.086272
+          ]
+        }
+      },
+      "woe_scorecard_with_protected": {
+        "age": {
+          "unprivileged": "<25",
+          "privileged": ">=25",
+          "groups": {
+            "<25": {
+              "n": 149.0,
+              "bad_rate": 0.409396,
+              "approval_rate": 0.179866,
+              "tpr": 0.281818,
+              "fpr": 0.032787
+            },
+            ">=25": {
+              "n": 851.0,
+              "bad_rate": 0.280846,
+              "approval_rate": 0.426322,
+              "tpr": 0.539216,
+              "fpr": 0.137238
+            }
+          },
+          "groups_ci95": {
+            "<25": {
+              "approval_rate": [
+                0.124473,
+                0.237762
+              ],
+              "tpr": [
+                0.19555,
+                0.368578
+              ],
+              "fpr": [
+                0.0,
+                0.078125
+              ]
+            },
+            ">=25": {
+              "approval_rate": [
+                0.395887,
+                0.456811
+              ],
+              "tpr": [
+                0.503281,
+                0.57408
+              ],
+              "fpr": [
+                0.09915,
+                0.176708
+              ]
+            }
+          },
+          "disparate_impact": 0.421901,
+          "disparate_impact_ci95": [
+            0.292476,
+            0.560026
+          ],
+          "equal_opportunity_difference": -0.257398,
+          "equal_opportunity_difference_ci95": [
+            -0.349537,
+            -0.162444
+          ]
+        },
+        "sex_statlog_codes": {
+          "unprivileged": "female",
+          "privileged": "male",
+          "groups": {
+            "female": {
+              "n": 310.0,
+              "bad_rate": 0.351613,
+              "approval_rate": 0.323226,
+              "tpr": 0.454726,
+              "fpr": 0.080734
+            },
+            "male": {
+              "n": 690.0,
+              "bad_rate": 0.276812,
+              "approval_rate": 0.41942,
+              "tpr": 0.527856,
+              "fpr": 0.136126
+            }
+          },
+          "groups_ci95": {
+            "female": {
+              "approval_rate": [
+                0.276971,
+                0.372998
+              ],
+              "tpr": [
+                0.396093,
+                0.517717
+              ],
+              "fpr": [
+                0.037103,
+                0.132293
+              ]
+            },
+            "male": {
+              "approval_rate": [
+                0.384592,
+                0.453393
+              ],
+              "tpr": [
+                0.485659,
+                0.567403
+              ],
+              "fpr": [
+                0.094467,
+                0.177994
+              ]
+            }
+          },
+          "disparate_impact": 0.770649,
+          "disparate_impact_ci95": [
+            0.646221,
+            0.916522
+          ],
+          "equal_opportunity_difference": -0.073129,
+          "equal_opportunity_difference_ci95": [
+            -0.14462,
+            -0.002066
+          ]
+        },
+        "sex_corrected_codes": {
+          "unprivileged": "female",
+          "privileged": "male",
+          "groups": {
+            "female": {
+              "n": 92.0,
+              "bad_rate": 0.271739,
+              "approval_rate": 0.402174,
+              "tpr": 0.501493,
+              "fpr": 0.136
+            },
+            "male": {
+              "n": 598.0,
+              "bad_rate": 0.277592,
+              "approval_rate": 0.422074,
+              "tpr": 0.531944,
+              "fpr": 0.136145
+            },
+            "mixed": {
+              "n": 310.0,
+              "bad_rate": 0.351613,
+              "approval_rate": 0.323226,
+              "tpr": 0.454726,
+              "fpr": 0.080734
+            }
+          },
+          "groups_ci95": {
+            "female": {
+              "approval_rate": [
+                0.30599,
+                0.493622
+              ],
+              "tpr": [
+                0.387091,
+                0.608222
+              ],
+              "fpr": [
+                0.027258,
+                0.266667
+              ]
+            },
+            "male": {
+              "approval_rate": [
+                0.386143,
+                0.45895
+              ],
+              "tpr": [
+                0.486542,
+                0.576503
+              ],
+              "fpr": [
+                0.091571,
+                0.185059
+              ]
+            },
+            "mixed": {
+              "approval_rate": [
+                0.276971,
+                0.372998
+              ],
+              "tpr": [
+                0.396093,
+                0.517717
+              ],
+              "fpr": [
+                0.037103,
+                0.132293
+              ]
+            }
+          },
+          "disparate_impact": 0.952853,
+          "disparate_impact_ci95": [
+            0.720725,
+            1.192574
+          ],
+          "equal_opportunity_difference": -0.030452,
+          "equal_opportunity_difference_ci95": [
+            -0.14897,
+            0.083936
+          ]
+        }
+      }
+    }
+  },
+  "tuning": {
+    "hgb_best_params_counts": {
+      "{\"hgb__max_iter\": 100, \"hgb__max_leaf_nodes\": 7, \"hgb__min_samples_leaf\": 20}": 10,
+      "{\"hgb__max_iter\": 100, \"hgb__max_leaf_nodes\": 7, \"hgb__min_samples_leaf\": 40}": 9,
+      "{\"hgb__max_iter\": 100, \"hgb__max_leaf_nodes\": 15, \"hgb__min_samples_leaf\": 40}": 2,
+      "{\"hgb__max_iter\": 50, \"hgb__max_leaf_nodes\": 15, \"hgb__min_samples_leaf\": 20}": 2,
+      "{\"hgb__max_iter\": 50, \"hgb__max_leaf_nodes\": 7, \"hgb__min_samples_leaf\": 20}": 1,
+      "{\"hgb__max_iter\": 200, \"hgb__max_leaf_nodes\": 7, \"hgb__min_samples_leaf\": 20}": 1
+    },
+    "logreg_best_params_counts": {
+      "{\"logreg__C\": 0.1}": 25
+    }
+  },
+  "permutation_importance_roc_auc": {
+    "woe_scorecard": [
+      {
+        "feature": "checking_status",
+        "mean": 0.09482,
+        "std": 0.014034
+      },
+      {
+        "feature": "duration",
+        "mean": 0.031339,
+        "std": 0.010374
+      },
+      {
+        "feature": "credit_history",
+        "mean": 0.025599,
+        "std": 0.006819
+      },
+      {
+        "feature": "purpose",
+        "mean": 0.021933,
+        "std": 0.01304
+      },
+      {
+        "feature": "savings_status",
+        "mean": 0.016457,
+        "std": 0.009055
+      },
+      {
+        "feature": "employment",
+        "mean": 0.011748,
+        "std": 0.006076
+      },
+      {
+        "feature": "credit_amount",
+        "mean": 0.009444,
+        "std": 0.007513
+      },
+      {
+        "feature": "other_payment_plans",
+        "mean": 0.003604,
+        "std": 0.002319
+      },
+      {
+        "feature": "installment_commitment",
+        "mean": 0.003214,
+        "std": 0.003315
+      },
+      {
+        "feature": "housing",
+        "mean": 0.002348,
+        "std": 0.002955
+      },
+      {
+        "feature": "existing_credits",
+        "mean": 0.0,
+        "std": 0.0
+      },
+      {
+        "feature": "num_dependents",
+        "mean": 0.0,
+        "std": 0.0
+      },
+      {
+        "feature": "residence_since",
+        "mean": 0.0,
+        "std": 0.0
+      },
+      {
+        "feature": "job",
+        "mean": 0.0,
+        "std": 0.0
+      },
+      {
+        "feature": "property_magnitude",
+        "mean": -4.5e-05,
+        "std": 0.002859
+      },
+      {
+        "feature": "own_telephone",
+        "mean": -0.000421,
+        "std": 0.000942
+      },
+      {
+        "feature": "other_parties",
+        "mean": -0.004505,
+        "std": 0.010073
+      }
+    ],
+    "hgb": [
+      {
+        "feature": "checking_status",
+        "mean": 0.111771,
+        "std": 0.01832
+      },
+      {
+        "feature": "duration",
+        "mean": 0.044976,
+        "std": 0.010623
+      },
+      {
+        "feature": "credit_history",
+        "mean": 0.02175,
+        "std": 0.012417
+      },
+      {
+        "feature": "purpose",
+        "mean": 0.020924,
+        "std": 0.012297
+      },
+      {
+        "feature": "savings_status",
+        "mean": 0.017448,
+        "std": 0.006208
+      },
+      {
+        "feature": "credit_amount",
+        "mean": 0.013376,
+        "std": 0.012368
+      },
+      {
+        "feature": "employment",
+        "mean": 0.009817,
+        "std": 0.010461
+      },
+      {
+        "feature": "other_payment_plans",
+        "mean": 0.004798,
+        "std": 0.003433
+      },
+      {
+        "feature": "property_magnitude",
+        "mean": 0.004231,
+        "std": 0.00463
+      },
+      {
+        "feature": "own_telephone",
+        "mean": 0.002557,
+        "std": 0.002569
+      },
+      {
+        "feature": "residence_since",
+        "mean": 0.002486,
+        "std": 0.002773
+      },
+      {
+        "feature": "housing",
+        "mean": 0.002288,
+        "std": 0.002419
+      },
+      {
+        "feature": "installment_commitment",
+        "mean": 0.002129,
+        "std": 0.003468
+      },
+      {
+        "feature": "existing_credits",
+        "mean": 0.000224,
+        "std": 0.000513
+      },
+      {
+        "feature": "job",
+        "mean": 0.000167,
+        "std": 0.001796
+      },
+      {
+        "feature": "num_dependents",
+        "mean": 0.000107,
+        "std": 0.000184
+      },
+      {
+        "feature": "other_parties",
+        "mean": -0.000652,
+        "std": 0.007513
+      }
+    ]
+  },
+  "final_model": {
+    "model": "woe_scorecard",
+    "features": [
+      "checking_status",
+      "duration",
+      "credit_history",
+      "purpose",
+      "credit_amount",
+      "savings_status",
+      "employment",
+      "installment_commitment",
+      "property_magnitude",
+      "other_payment_plans",
+      "housing"
+    ],
+    "n_bins": 46,
+    "threshold_pd": 0.149462,
+    "cutoff_score": 537.294861,
+    "oof_cost_per_applicant": 0.518,
+    "oof_approval_rate": 0.3632,
+    "in_sample_score_range": [
+      403.310757,
+      628.848756
+    ],
+    "in_sample_score_median": 520.727987,
+    "example_rejections": [
+      {
+        "row": 1,
+        "pd": 0.478835,
+        "score": 489.567094,
+        "reason_codes": [
+          {
+            "feature": "duration",
+            "value": 48.0,
+            "bin": ">= 48",
+            "points": 22.63,
+            "best_bin_points": 73.71,
+            "points_lost": 51.08
+          },
+          {
+            "feature": "checking_status",
+            "value": "0<=X<200",
+            "bin": "0<=X<200",
+            "points": 37.21,
+            "best_bin_points": 73.74,
+            "points_lost": 36.53
+          },
+          {
+            "feature": "savings_status",
+            "value": "<100",
+            "bin": "<100",
+            "points": 40.57,
+            "best_bin_points": 63.52,
+            "points_lost": 22.96
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "pd": 0.625722,
+        "score": 472.294597,
+        "reason_codes": [
+          {
+            "feature": "checking_status",
+            "value": "<0",
+            "bin": "<0",
+            "points": 27.55,
+            "best_bin_points": 73.74,
+            "points_lost": 46.19
+          },
+          {
+            "feature": "duration",
+            "value": 42.0,
+            "bin": "[36, 48)",
+            "points": 33.81,
+            "best_bin_points": 73.71,
+            "points_lost": 39.9
+          },
+          {
+            "feature": "purpose",
+            "value": "furniture/equipment",
+            "bin": "furniture/equipment | domestic appliance",
+            "points": 43.84,
+            "best_bin_points": 67.96,
+            "points_lost": 24.12
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "pd": 0.708809,
+        "score": 461.454216,
+        "reason_codes": [
+          {
+            "feature": "checking_status",
+            "value": "<0",
+            "bin": "<0",
+            "points": 27.55,
+            "best_bin_points": 73.74,
+            "points_lost": 46.19
+          },
+          {
+            "feature": "purpose",
+            "value": "new car",
+            "bin": "new car",
+            "points": 36.82,
+            "best_bin_points": 67.96,
+            "points_lost": 31.13
+          },
+          {
+            "feature": "duration",
+            "value": 24.0,
+            "bin": "[18, 36)",
+            "points": 44.27,
+            "best_bin_points": 73.71,
+            "points_lost": 29.44
+          }
+        ]
+      }
+    ]
+  }
+}
